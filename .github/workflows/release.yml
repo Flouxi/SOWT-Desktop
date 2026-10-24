@@ -38,8 +38,8 @@ jobs:
           name: sowt-desktop-${{ matrix.target }}-${{ github.sha }}
           path: |
             dist/*.exe
-            desktop/dist/*.dmg
-            desktop/dist/SHA256SUMS.txt
+            dist/*.dmg
+            dist/SHA256SUMS.txt
           retention-days: 7
           compression-level: 0
           if-no-files-found: error
