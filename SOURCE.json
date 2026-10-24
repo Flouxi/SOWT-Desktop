@@ -1,0 +1,17 @@
+{
+  "source": "Flouxi/App.Sowt",
+  "sourceCommit": "cbad5c6390e22e82264a21efa79d2982d53549f9",
+  "scope": "Desktop client only; application services remain hosted on app.sowt.ai",
+  "files": {
+    "package.json": "385b28a3b6288b230bd7c36994392bf4525591009c08130fb983118f048b0607",
+    "package-lock.json": "5230c565fccecba6f6e5a2780993b69dd923a30940c634e513e769f738b4149f",
+    "main.cjs": "229485e8d9ba6a1a43a60ebf2d5a1b996e39864ff3203592a4e57831837f5b70",
+    "policy.cjs": "07bfd254445b508c7c6575d8d0c7828d6d41c111566fd68862401308ac7a240d",
+    "offline.html": "2408d1c49f66e10809c2613aacc7fd14e071fc44714042918060198cdb7508a8",
+    "README.md": "759c75414cf4aa68f67a0646ba7614155ba6e30d4a70140774e2fbfcd48144b9",
+    ".gitignore": "e8bc935ce727f1809c792f4c5d26c5fc75ba2b7df7fc9390c56c8892f6a6007f",
+    "assets/icon.png": "06aeb4f35ed6f14d945260e33a11126c1031c95c87e012fdbffff7a6a28de033",
+    "tests/policy.test.cjs": "689e001f115205a4ce2f870e97e6ebde3a60383ce2cd2dd427076362a378fb65",
+    "scripts/hash-installers.cjs": "fa4b2858a2bf7684bbd962c5e034473ab704add6f71138f3c02b2b979ada9b3c"
+  }
+}

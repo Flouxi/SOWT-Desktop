@@ -1,0 +1,63 @@
+name: SOWT desktop preview
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: win
+          - os: macos-14
+            target: mac
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: .
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npx electron-builder --${{ matrix.target }} --publish never
+      - name: Hash installers
+        run: node scripts/hash-installers.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sowt-desktop-${{ matrix.target }}-${{ github.sha }}
+          path: |
+            dist/*.exe
+            desktop/dist/*.dmg
+            desktop/dist/SHA256SUMS.txt
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+
+  publish:
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: sowt-desktop-*
+          path: release-assets
+      - run: node scripts/publish.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
